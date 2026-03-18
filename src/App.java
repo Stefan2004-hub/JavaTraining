@@ -22,10 +22,16 @@ public class App {
         "Remove duplicates: "
             + Utils.removeDuplicates(List.of("apple", "banana", "apple", "orange")));
 
-        //reservation system test
-        // Example: 5 seats, 4 operations (Reserve, Reserve, Cancel seat 1, Reserve)
-        int[] ops = {0, 0, 1, 0};
-        int[] result = ReservationSystem.reserveSeats2(5, 4, ops);
-        System.out.println(Arrays.toString(result)); // Expected: [1, 2, 1]
+    // reservation system test
+    // Example: 5 seats, 4 operations (Reserve, Reserve, Cancel seat 1, Reserve)
+    int[] ops = {0, 0, 1, 0};
+    int[] result = ReservationSystem.reserveSeats2(5, 4, ops);
+    System.out.println(Arrays.toString(result)); // Expected: [1, 2, 1]
+
+    // Test Case for CommentsCount
+    String[] comments = {"bad_word_here", "this_is_Fine", "BAD_news", "no_bad_vibes"};
+    String keyword = "bad";
+    System.out.println(
+        CommentsCount.countDerogatoryComments2(4, keyword, comments)); // Expected Output: 3
   }
 }
