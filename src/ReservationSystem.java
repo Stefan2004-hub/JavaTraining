@@ -100,4 +100,46 @@ public class ReservationSystem {
     // Convert result list to array
     return reservedResult.stream().mapToInt(Integer::intValue).toArray();
   }
+
+  public static int[] reserveSeats3(int N, int k, int[] seat) {
+    // Tracks seats that were reserved then CANCELLED (available again)
+    PriorityQueue<Integer> availableCancelledSeats = new PriorityQueue<>();
+    // Tracks currently reserved seats to validate cancellations
+    Set<Integer> currentReservations = new HashSet<>();
+
+    // Pointer for the next never-before-reserved seat
+    int nextSmallest = 1;
+
+    List<Integer> reservedResult = new ArrayList<>();
+
+    for (int i = 0; i < k; i++) {
+      int val = seat[i];
+
+      if (val == 0) {
+        // OPERATION: RESERVE
+        int seatToReserve;
+        // Priority 1: Take the smallest seat that was previously cancelled
+        if (!availableCancelledSeats.isEmpty()) {
+          seatToReserve = availableCancelledSeats.poll();
+        } else if (nextSmallest <= N) {
+          // Priority 2: Take the next brand new seat
+          seatToReserve = nextSmallest++;
+        } else {
+          continue; // All seats N are taken
+        }
+
+        currentReservations.add(seatToReserve);
+        reservedResult.add(seatToReserve);
+      } else {
+        // OPERATION: CANCEL (val is the seat number)
+        if (currentReservations.contains(val)) {
+          currentReservations.remove(val);
+          availableCancelledSeats.add(val);
+        }
+      }
+    }
+
+    // Convert result list to array
+    return reservedResult.stream().mapToInt(Integer::intValue).toArray();
+  }
 }

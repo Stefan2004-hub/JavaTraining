@@ -6,7 +6,7 @@ public class CommentsCount {
   // Hence he searched the comment section with a key word S.
   // Give the count of the comments that will be returned as a result of the search.
   // The count can be 0, the algorithm searches the keyword irrespective of the case of the word.
-  // The separator here is _. The function(static int dolution) takes 3 parameters
+  // The separator here is _. The function(static int solution) takes 3 parameters
   // and returns the solution. int N represents the number of comments,
   // String S represents the key word String[] comments represents the array of comments
 
