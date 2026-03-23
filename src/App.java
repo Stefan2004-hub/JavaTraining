@@ -33,5 +33,12 @@ public class App {
     String keyword = "bad";
     System.out.println(
         CommentsCount.countDerogatoryComments2(4, keyword, comments)); // Expected Output: 3
+
+    // Test Case for BasicProblems
+    BasicProblems bp = new BasicProblems();
+    int[] nums = {2, 7, 11, 15};
+    int targetSum = 9;
+    int[] resultBasicProblems = bp.twoSum(nums, targetSum);
+    System.out.println(Arrays.toString(resultBasicProblems)); // Expected: [0, 1]
   }
 }
