@@ -19,4 +19,29 @@ public class BasicProblems {
         }
         throw new IllegalArgumentException("No two sum solution found");
     }
+
+    // Given an integer x, return true if x is a palindrome, and false otherwise.
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false; // Negative numbers are not palindromes
+        }
+        String str = Integer.toString(x);
+        String reversedStr = new StringBuilder(str).reverse().toString();
+        return str.equals(reversedStr);
+    }
+
+        public boolean isPalindrome2(int x) {
+        String str = Integer.toString(x);
+        int right = str.length() - 1;
+        int left = 0;
+        for (char s : str.toCharArray()){
+            if (s != str.charAt(right)) {
+                return false;
+            }
+            right--;
+            left++;
+            if (right == left) break;
+        }
+        return true;
+    }
 }
