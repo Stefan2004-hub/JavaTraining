@@ -64,19 +64,34 @@ mvn -DskipTests package
 ```
 ### Use this as your default after adding new functions:
 
-- mvn test
+```bash
+mvn test
+```
 
-  That compiles main code, compiles tests, and runs all JUnit tests.
+That compiles main code, compiles tests, and runs all JUnit tests.
 
-  If you only want to check compilation and build a jar without running tests:
+If you only want to check compilation and build a jar without running tests:
 
-- mvn -DskipTests package
+```bash
+mvn -DskipTests package
+```
 
-  Useful quick options:
+Useful quick options:
 
-- mvn -Dtest=BasicAlgorithmsTest test (run one test class)
-- mvn -Dtest=BasicAlgorithmsTest#isPalindrome_ShouldReturnTrue_ForPalindrome test (single test)
-- mvn clean test (same as mvn test, but cleans old build output first)
+```bash
+mvn -Dtest=BasicAlgorithmsTest test 
+```
+(run one test class)
+
+```bash
+mvn -Dtest=BasicAlgorithmsTest#isPalindrome_ShouldReturnTrue_ForPalindrome test
+```
+(single test)
+
+```bash
+mvn clean test
+``` 
+(same as mvn test, but cleans old build output first)
 
 ## Notes
 
