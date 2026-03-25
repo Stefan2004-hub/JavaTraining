@@ -1,6 +1,6 @@
 # Java Interview Practice
 
-A focused Java practice project with common interview-style coding challenges, implemented as small, readable classes. The repository is designed to show practical problem-solving across arrays, strings, collections, and simulation tasks.
+A focused Java practice project with common interview-style coding challenges, organized in a professional Maven layout with unit tests.
 
 ## What This Project Covers
 
@@ -9,72 +9,74 @@ A focused Java practice project with common interview-style coding challenges, i
 - **Seat reservation simulation:** reserve/cancel flows with priority handling in `ReservationSystem`.
 - **Comment moderation count:** case-insensitive keyword detection with underscore tokenization in `CommentsCount`.
 - **Core algorithm drills:** palindrome, anagrams, sorting, first non-repeating character, and frequency counting in `BasicAlgorithms`.
+- **Additional interview basics:** two-sum indices and palindrome-number checks in `BasicProblems`.
 - **Utility methods:** reverse string, word counting, and duplicate removal in `Utils`.
-- **Executable demo:** `App` runs sample scenarios and prints example results.
 
 ## Tech Stack
 
-- Java (tested locally with Java 25 LTS)
-- Plain source layout (no Maven/Gradle required)
-- VS Code Java project settings (`.vscode/settings.json`)
+- Java 25
+- Maven
+- JUnit 5 (Jupiter)
 
 ## Project Structure
 
 ```text
 .
+├── pom.xml
 ├── src/
-│   ├── App.java
-│   ├── BasicAlgorithms.java
-│   ├── CommentsCount.java
-│   ├── ReservationSystem.java
-│   ├── SubSequenceArray.java
-│   ├── SumArrayTarget.java
-│   └── Utils.java
-├── bin/               # compiled classes
-├── lib/               # optional external jars
+│   ├── main/java/com/practice/
+│   │   ├── App.java
+│   │   ├── algorithms/
+│   │   │   ├── BasicAlgorithms.java
+│   │   │   ├── BasicProblems.java
+│   │   │   ├── SubSequenceArray.java
+│   │   │   └── SumArrayTarget.java
+│   │   ├── logic/
+│   │   │   ├── CommentsCount.java
+│   │   │   └── ReservationSystem.java
+│   │   └── utils/
+│   │       └── Utils.java
+│   └── test/java/com/practice/
+│       ├── algorithms/
+│       ├── logic/
+│       └── utils/
 └── README.md
 ```
 
-## Run Locally
+## Build and Test
 
-### 1) Compile
-
-```bash
-javac -d bin src/*.java
-```
-
-### 2) Run the demo app
+### Run all tests
 
 ```bash
-java -cp bin App
+mvn test
 ```
 
-## Example Runtime Behavior
+### Quiet test run
 
-When running `App`, you should see outputs similar to:
+```bash
+mvn -q test
+```
 
-- Two-sum pair for target `9` from `[2, 7, 11, 15]` -> `2, 7`
-- Reversed string for `"Hello, World!"`
-- Word occurrence count for `"apple"`
-- Deduplicated list output
-- Reservation sequence result for operations `{0, 0, 1, 0}` with 5 seats -> `[1, 2, 1]`
-- Derogatory comment count for keyword `"bad"` -> `3`
+### Build artifact (skip tests)
+
+```bash
+mvn -DskipTests package
+```
+
+## Notes
+
+- `App` is intentionally minimal and does not execute demonstration scenarios.
+- Validation of algorithm behavior is done through JUnit 5 test classes under `src/test/java`.
 
 ## How To Extend
 
-1. Add a new challenge class under `src/`.
-2. Keep the solution method small, deterministic, and easy to run from `main`.
-3. Add a quick demonstration call in `App.java`.
-4. Recompile and run to verify behavior.
-
-## Quality Notes
-
-- This repository currently uses executable examples rather than a unit-test suite.
-- There is no build tool wrapper yet (Maven/Gradle), by design, to keep the project lightweight.
-- Some classes include multiple solution variants to compare tradeoffs (clarity vs. performance).
+1. Add a new challenge class under `src/main/java/com/practice/...`.
+2. Add or update corresponding tests under `src/test/java/com/practice/...`.
+3. Document method intent and complexity in Javadoc (`@param`, `@return`, time/space complexity).
+4. Run `mvn test` before committing.
 
 ## Suggested Next Improvements
 
-1. Add JUnit tests for each challenge class.
-2. Introduce Maven or Gradle for dependency and test lifecycle management.
-3. Add CI checks (compile + tests) for pull requests.
+1. Add CI pipeline checks (`mvn test` on pull requests).
+2. Add JaCoCo test coverage reports.
+3. Add parameterized tests for broader input coverage.
