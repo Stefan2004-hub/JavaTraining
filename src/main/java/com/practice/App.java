@@ -1,18 +1,16 @@
 package com.practice;
 
-/**
- * Application entry point.
- */
+/** Application entry point. */
+import java.util.logging.Logger;
+
 public final class App {
+
+  private static final Logger LOGGER = Logger.getLogger(App.class.getName());
 
   private App() {}
 
-  /**
-   * Starts the application.
-   *
-   * @param args command-line arguments
-   */
-  public static void main(String[] args) {
-    System.out.println("Interview practice project. Run tests with: mvn test");
+  /** Starts the application. */
+  public static void main() {
+    LOGGER.info("Interview practice project. Run tests with: mvn test");
   }
 }

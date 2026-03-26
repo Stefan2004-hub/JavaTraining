@@ -14,12 +14,11 @@ public final class CommentsCount {
    *
    * <p>Space Complexity: O(1) excluding lowercase temporary strings
    *
-   * @param n number of comments
    * @param keyword search keyword
    * @param comments input comments
    * @return number of comments that contain the keyword
    */
-  public static int countDerogatoryComments(int n, String keyword, String[] comments) {
+  public static int countDerogatoryComments(String keyword, String[] comments) {
     int count = 0;
     String normalizedKeyword = keyword.toLowerCase();
     for (String comment : comments) {

@@ -6,9 +6,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-/**
- * Seat reservation simulation utilities.
- */
+/** Seat reservation simulation utilities. */
 public final class ReservationSystem {
 
   private ReservationSystem() {}
@@ -72,51 +70,6 @@ public final class ReservationSystem {
    * @return sequence of reserved seats in reservation order
    */
   public static int[] reserveSeats2(int n, int k, int[] seat) {
-    PriorityQueue<Integer> availableCancelledSeats = new PriorityQueue<>();
-    Set<Integer> currentReservations = new HashSet<>();
-    int nextSmallest = 1;
-    List<Integer> reservedResult = new ArrayList<>();
-
-    for (int i = 0; i < k; i++) {
-      int val = seat[i];
-
-      if (val == 0) {
-        int seatToReserve;
-        if (!availableCancelledSeats.isEmpty()) {
-          seatToReserve = availableCancelledSeats.poll();
-        } else if (nextSmallest <= n) {
-          seatToReserve = nextSmallest++;
-        } else {
-          continue;
-        }
-
-        currentReservations.add(seatToReserve);
-        reservedResult.add(seatToReserve);
-      } else {
-        if (currentReservations.contains(val)) {
-          currentReservations.remove(val);
-          availableCancelledSeats.add(val);
-        }
-      }
-    }
-
-    return reservedResult.stream().mapToInt(Integer::intValue).toArray();
-  }
-
-  /**
-   * Alias implementation for reserve/cancel flow; behavior mirrors {@link #reserveSeats2(int, int,
-   * int[])}.
-   *
-   * <p>Time Complexity: O(k log n)
-   *
-   * <p>Space Complexity: O(n)
-   *
-   * @param n total number of seats
-   * @param k number of operations
-   * @param seat operation array
-   * @return sequence of reserved seats in reservation order
-   */
-  public static int[] reserveSeats3(int n, int k, int[] seat) {
     PriorityQueue<Integer> availableCancelledSeats = new PriorityQueue<>();
     Set<Integer> currentReservations = new HashSet<>();
     int nextSmallest = 1;

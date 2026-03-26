@@ -17,10 +17,4 @@ class ReservationSystemTest {
     int[] ops = {0, 0, 1, 0};
     assertArrayEquals(new int[] {1, 2, 1}, ReservationSystem.reserveSeats2(5, 4, ops));
   }
-
-  @Test
-  void reserveSeats3_ShouldHandleNoSeatAvailableEdgeCase() {
-    int[] ops = {0, 0, 0};
-    assertArrayEquals(new int[] {1, 2}, ReservationSystem.reserveSeats3(2, 3, ops));
-  }
 }
