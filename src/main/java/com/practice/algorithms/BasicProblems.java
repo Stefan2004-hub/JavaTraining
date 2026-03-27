@@ -1,11 +1,10 @@
 package com.practice.algorithms;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-/**
- * Core interview problems with concise implementations.
- */
+/** Core interview problems with concise implementations. */
 public class BasicProblems {
 
   /**
@@ -79,5 +78,58 @@ public class BasicProblems {
       }
     }
     return true;
+  }
+
+  /*
+  Your company builds signal monitoring devices. You are responsible for verifying sensor stability. When a sensor is unstable, its output shows large variations.
+  Create a function that counts the number of peaks in a list of measurements:
+  Top Peak: A value at least 5 units higher than both its immediate neighbors.
+  Bottom Peak: A value at least 5 units lower than both its immediate neighbors.
+  Constraints:
+  The first and last elements can never be peaks.
+  The input list contains between 0 and 20 values (always defined, never null).
+  Values are between 0 and 100.
+
+  Utility for analyzing data signal stability.
+  * <p>This class provides methods to identify noise and fluctuations
+  in sensor data streams by detecting significant peaks and valleys.</p>
+  */
+  /**
+   * Identifies and counts "peaks" in a sequence of measurements. *
+   *
+   * <p>A peak is defined as a data point that deviates by at least 5 units from both its left and
+   * right neighbors. This includes both high peaks (top) and low peaks (bottom).
+   *
+   * @param measurements A list of signal values (expected range: 0.0 to 100.0).
+   * @return The total number of detected peaks. Returns 0 if there are fewer than 3 elements, as
+   *     boundary elements cannot be peaks.
+   */
+  public static int countSignalPeaks(List<Double> measurements) {
+    // Boundary elements can never be peaks; requires at least 3 points.
+    if (measurements == null || measurements.size() < 3) {
+      return 0;
+    }
+
+    int totalPeaks = 0;
+    final double THRESHOLD = 5.0;
+
+    // Traverse from the second element to the second-to-last element
+    for (int i = 1; i < measurements.size() - 1; i++) {
+      double current = measurements.get(i);
+      double previous = measurements.get(i - 1);
+      double next = measurements.get(i + 1);
+
+      // Check if current value is a top peak
+      boolean isTop = (current >= previous + THRESHOLD) && (current >= next + THRESHOLD);
+
+      // Check if current value is a bottom peak
+      boolean isBottom = (current <= previous - THRESHOLD) && (current <= next - THRESHOLD);
+
+      if (isTop || isBottom) {
+        totalPeaks++;
+      }
+    }
+
+    return totalPeaks;
   }
 }

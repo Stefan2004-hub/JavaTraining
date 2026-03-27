@@ -1,10 +1,12 @@
 package com.practice.algorithms;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class BasicProblemsTest {
@@ -29,5 +31,11 @@ class BasicProblemsTest {
   @Test
   void isPalindrome2_ShouldReturnTrue_ForPalindromeNumber() {
     assertTrue(subject.isPalindrome2(1221));
+  }
+
+  @Test
+  void countSignalPeaks_ShouldReturnCorrectCount_ForHappyPath() {
+    List<Double> values = List.of(10.0, 15.0, 10.0, 2.0, 10.0);
+    assertEquals(2, BasicProblems.countSignalPeaks(values));
   }
 }
