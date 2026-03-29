@@ -8,7 +8,7 @@ import java.util.Map;
 public class BasicProblems {
 
   /**
-   * Returns the indices of two numbers that sum to the target.
+   * Returns the indices of
    *
    * <p>Time Complexity: O(n)
    *
@@ -101,7 +101,7 @@ public class BasicProblems {
    * right neighbors. This includes both high peaks (top) and low peaks (bottom).
    *
    * @param measurements A list of signal values (expected range: 0.0 to 100.0).
-   * @return The total number of detected peaks. Returns 0 if there are fewer than 3 elements, as
+   * @return The total number of detected peaks. Returns 0 if arrthere are fewer than 3 elements, as
    *     boundary elements cannot be peaks.
    */
   public static int countSignalPeaks(List<Double> measurements) {
@@ -131,5 +131,30 @@ public class BasicProblems {
     }
 
     return totalPeaks;
+  }
+
+  /*
+    Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
+  Consider the number of unique elements in nums to be k​​​​​​​​​​​​​​. After removing duplicates, return the number of unique elements k.
+  The first k elements of nums should contain the unique numbers in sorted order. The remaining elements beyond index k - 1 can be ignored.
+  */
+  /**
+   * Removes duplicates from a sorted array in-place and returns the count of unique elements.
+   *
+   * @param nums
+   * @return number of unique elements after duplicates are removed
+   */
+  public static int removeDuplicates(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+    int uniqueIndex = 1; // Start from the second element
+    for (int i = 1; i < nums.length; i++) {
+      if (nums[i] != nums[i - 1]) {
+        nums[uniqueIndex] = nums[i];
+        uniqueIndex++;
+      }
+    }
+    return uniqueIndex;
   }
 }

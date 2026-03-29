@@ -38,4 +38,12 @@ class BasicProblemsTest {
     List<Double> values = List.of(10.0, 15.0, 10.0, 2.0, 10.0);
     assertEquals(2, BasicProblems.countSignalPeaks(values));
   }
+
+  @Test
+  void removeDuplicates_ShouldReturnUniqueElements_ForHappyPath() {
+    int[] nums = {1, 1, 2, 3, 3, 4};
+    int newLength = BasicProblems.removeDuplicates(nums);
+    assertEquals(4, newLength);
+    assertArrayEquals(new int[] {1, 2, 3, 4}, java.util.Arrays.copyOf(nums, newLength));
+  }
 }
