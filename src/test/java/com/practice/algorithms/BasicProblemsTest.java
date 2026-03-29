@@ -46,4 +46,12 @@ class BasicProblemsTest {
     assertEquals(4, newLength);
     assertArrayEquals(new int[] {1, 2, 3, 4}, java.util.Arrays.copyOf(nums, newLength));
   }
+
+  @Test
+  void removeElement_ShouldReturnNewLength_ForHappyPath() {
+    int[] nums = {3, 2, 2, 3};
+    int newLength = BasicProblems.removeElement(nums, 3);
+    assertEquals(2, newLength);
+    assertArrayEquals(new int[] {2, 2}, java.util.Arrays.copyOf(nums, newLength));
+  }
 }
