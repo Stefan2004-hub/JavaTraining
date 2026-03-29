@@ -54,4 +54,9 @@ class BasicProblemsTest {
     assertEquals(2, newLength);
     assertArrayEquals(new int[] {2, 2}, java.util.Arrays.copyOf(nums, newLength));
   }
+
+  @Test
+  void strStr_ShouldReturnIndex_ForHappyPath() {
+    assertEquals(2, BasicProblems.strStr("hello", "ll"));
+  }
 }
