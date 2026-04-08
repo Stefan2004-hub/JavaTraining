@@ -94,4 +94,10 @@ class UtilsTest {
 
     assertEquals(input, outContent.toString());
   }
+
+  @Test
+  void print_shouldReturnTheCorrectArrayCount() throws IOException {
+    int[] theArray = {1, 5, 3, 2, 6, 4};
+    assertEquals(4, Utils.trySubsequence(theArray));
+  }
 }
