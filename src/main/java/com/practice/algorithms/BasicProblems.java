@@ -209,4 +209,54 @@ public class BasicProblems {
     }
     return -1;
   }
+
+  /**
+   * Finds the index of the first occurrence of needle in haystack. * @param haystack The string to
+   * search within.
+   *
+   * @param needle The substring to search for.
+   * @return The index of the first occurrence, or -1 if not found.
+   */
+  public static int strIndexOf(String haystack, String needle) {
+    if (needle == null || needle.isEmpty()) {
+      return 0;
+    }
+    if (haystack == null) {
+      return -1;
+    }
+
+    return haystack.indexOf(needle);
+  }
+
+  /**
+   * Finds the index of the first occurrence of {@code needle} in {@code haystack} using a
+   * straightforward character-by-character search.
+   *
+   * <p>If {@code needle} is empty, this method returns {@code 0}. If {@code haystack} is {@code
+   * null} or {@code needle} cannot be found, it returns {@code -1}.
+   *
+   * @param haystack the string to search within
+   * @param needle the substring to search for
+   * @return the starting index of the first occurrence of {@code needle} in {@code haystack}, or
+   *     {@code -1} if {@code needle} is not found
+   */
+  public static int strStr2(String haystack, String needle) {
+    if (needle.isEmpty()) return 0;
+
+    int hLen = haystack.length();
+    int nLen = needle.length();
+
+    for (int i = 0; i <= hLen - nLen; i++) {
+      int j;
+      for (j = 0; j < nLen; j++) {
+        if (haystack.charAt(i + j) != needle.charAt(j)) {
+          break; // Mismatch found, jump to next i
+        }
+      }
+      if (j == nLen) {
+        return i; // Found the whole needle
+      }
+    }
+    return -1;
+  }
 }
