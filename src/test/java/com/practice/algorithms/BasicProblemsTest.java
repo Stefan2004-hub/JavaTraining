@@ -59,4 +59,14 @@ class BasicProblemsTest {
   void strStr_ShouldReturnIndex_ForHappyPath() {
     assertEquals(2, BasicProblems.strStr("hello", "ll"));
   }
+
+  @Test
+  void strIndexOf_ShouldReturnIndex_ForHappyPath() {
+    assertEquals(2, BasicProblems.strIndexOf("hello", "ll"));
+  }
+
+  @Test
+  void strStr2_ShouldReturnIndex_ForHappyPath() {
+    assertEquals(2, BasicProblems.strStr2("hello", "ll"));
+  }
 }
