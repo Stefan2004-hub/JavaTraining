@@ -58,4 +58,75 @@ class BasicAlgorithmsTest {
   void firstNonRepeatingCharacter2_ShouldReturnFirstUnique() {
     assertEquals('w', BasicAlgorithms.firstNonRepeatingCharacter2("swiss"));
   }
+
+  @Test
+  void scoreRewrite4_NullInputs_ReturnsMinusOne() {
+    assertEquals(-1, BasicAlgorithms.scoreRewrite4(null, null));
+  }
+
+  @Test
+  void scoreRewrite4_OneNullInput_ReturnsMinusOne() {
+    assertEquals(-1, BasicAlgorithms.scoreRewrite4(null, "abc"));
+    assertEquals(-1, BasicAlgorithms.scoreRewrite4("abc", null));
+  }
+
+  @Test
+  void scoreRewrite4_BothEmpty_Returns100() {
+    assertEquals(100, BasicAlgorithms.scoreRewrite4("", ""));
+  }
+
+  @Test
+  void scoreRewrite4_OneEmptyInput_ReturnsMinusOne() {
+    assertEquals(-1, BasicAlgorithms.scoreRewrite4("", "abc"));
+    assertEquals(-1, BasicAlgorithms.scoreRewrite4("abc", ""));
+  }
+
+  @Test
+  void scoreRewrite4_ExactMatch_Returns100() {
+    assertEquals(100, BasicAlgorithms.scoreRewrite4("abc", "abc"));
+    assertEquals(100, BasicAlgorithms.scoreRewrite4("hello", "hello"));
+  }
+
+  @Test
+  void scoreRewrite4_NoCommonSubstringLength3OrMore_Returns0() {
+    assertEquals(0, BasicAlgorithms.scoreRewrite4("abc", "xyz"));
+  }
+
+  @Test
+  void scoreRewrite4_StringsShorterThanMinMatchLength_Returns0() {
+    assertEquals(0, BasicAlgorithms.scoreRewrite4("ab", "ac"));
+    assertEquals(0, BasicAlgorithms.scoreRewrite4("a", "b"));
+  }
+
+  @Test
+  void scoreRewrite4_OneStringContainsTheOther_Returns100() {
+    assertEquals(100, BasicAlgorithms.scoreRewrite4("abcd", "abcdef"));
+  }
+
+  @Test
+  void scoreRewrite4_PartialPrefixMatch_CalculatesCorrectScore() {
+    assertEquals(60, BasicAlgorithms.scoreRewrite4("abcde", "abcXY"));
+  }
+
+  @Test
+  void scoreRewrite4_MultipleSeparateMatches_AccumulatesScore() {
+    assertEquals(67, BasicAlgorithms.scoreRewrite4("abcXYZdef", "abcLMNdef"));
+  }
+
+  @Test
+  void scoreRewrite4_GreedyPicksLongestMatchFirst() {
+    assertEquals(57, BasicAlgorithms.scoreRewrite4("XXXXabc", "XXXXdef"));
+  }
+
+  @Test
+  void scoreRewrite4_ScoreRounding_RoundsCorrectly() {
+    assertEquals(67, BasicAlgorithms.scoreRewrite4("abcdEF", "abcdGH"));
+  }
+
+  @Test
+  void scoreRewrite4_IsSymmetric() {
+    assertEquals(
+        BasicAlgorithms.scoreRewrite4("abcde", "abcXY"),
+        BasicAlgorithms.scoreRewrite4("abcXY", "abcde"));
+  }
 }

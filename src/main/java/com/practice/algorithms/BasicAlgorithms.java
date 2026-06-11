@@ -4,9 +4,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Collection of common interview-ready algorithm exercises.
- */
+/** Collection of common interview-ready algorithm exercises. */
 public class BasicAlgorithms {
 
   /**
@@ -347,5 +345,57 @@ public class BasicAlgorithms {
       freq[num]++;
     }
     return freq;
+  }
+
+  /**
+   * Calculates a similarity score based on the length of matched substrings found between two
+   * strings using a greedy approach.
+   */
+  public static int scoreRewrite4(String s1, String s2) {
+    if (s1 == null || s2 == null) return -1;
+    if (s1.isEmpty() || s2.isEmpty()) return (s1.length() == 0 && s2.length() == 0) ? 100 : -1;
+    if (s1.equals(s2)) return 100;
+
+    char[] c1 = s1.toCharArray();
+    char[] c2 = s2.toCharArray();
+    boolean[] used1 = new boolean[c1.length];
+    boolean[] used2 = new boolean[c2.length];
+
+    int totalMatchedLen = 0;
+
+    // Greedy matching: Look for longest common substrings descending from min length
+    for (int len = Math.min(c1.length, c2.length); len >= 3; len--) {
+      for (int i = 0; i <= c1.length - len; i++) {
+        if (used1[i]) continue;
+
+        for (int j = 0; j <= c2.length - len; j++) {
+          if (used2[j]) continue;
+
+          if (isMatch(c1, i, c2, j, len, used1, used2)) {
+            totalMatchedLen += len;
+            markUsed(used1, i, len);
+            markUsed(used2, j, len);
+            // Reset to find the next longest possible substring
+            i = -1;
+            break;
+          }
+        }
+      }
+    }
+
+    int lenSmall = Math.min(s1.length(), s2.length());
+    return (int) Math.round(((double) totalMatchedLen / lenSmall) * 100);
+  }
+
+  private static boolean isMatch(
+      char[] c1, int i, char[] c2, int j, int len, boolean[] u1, boolean[] u2) {
+    for (int k = 0; k < len; k++) {
+      if (u1[i + k] || u2[j + k] || c1[i + k] != c2[j + k]) return false;
+    }
+    return true;
+  }
+
+  private static void markUsed(boolean[] used, int start, int len) {
+    for (int k = start; k < start + len; k++) used[k] = true;
   }
 }
